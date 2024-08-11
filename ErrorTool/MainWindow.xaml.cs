@@ -139,6 +139,27 @@ namespace ErrorTool
 
         private void ExportButton_Click(object sender, RoutedEventArgs e)
         {
+            List<string> troubleshootingSteps = new List<string>();
+
+            if (!string.IsNullOrWhiteSpace(Step1TextBox.Text))
+            {
+                troubleshootingSteps.Add(Step1TextBox.Text);
+            }
+            if (!string.IsNullOrWhiteSpace(Step2TextBox.Text))
+            {
+                troubleshootingSteps.Add(Step2TextBox.Text);
+            }
+            if (!string.IsNullOrWhiteSpace(Step3TextBox.Text))
+            {
+                troubleshootingSteps.Add(Step3TextBox.Text);
+            }
+
+            if (troubleshootingSteps.Count == 0)
+            {
+                MessageBox.Show("Please enter at least one troubleshooting step.");
+                return;
+            }
+
             var result = new
             {
                 Id = int.Parse(IdTextBox.Text),
@@ -159,12 +180,7 @@ namespace ErrorTool
                     Width = double.Parse(DetailWidthTextBlock.Text),
                     Height = double.Parse(DetailHeightTextBlock.Text)
                 },
-                TroubleshootingSteps = new List<string>
-                {
-                    Step1TextBox.Text,
-                    Step2TextBox.Text,
-                    Step3TextBox.Text
-                }
+                TroubleshootingSteps = troubleshootingSteps
             };
 
             string json = JsonConvert.SerializeObject(result, Formatting.Indented);
@@ -179,8 +195,23 @@ namespace ErrorTool
 
         private void ClearRectanglesButton_Click(object sender, RoutedEventArgs e)
         {
-            OverviewCanvas.Children.Clear();
-            DetailCanvas.Children.Clear();
+            // Xóa chỉ các đối tượng Rectangle khỏi OverviewCanvas
+            for (int i = OverviewCanvas.Children.Count - 1; i >= 0; i--)
+            {
+                if (OverviewCanvas.Children[i] is Rectangle)
+                {
+                    OverviewCanvas.Children.RemoveAt(i);
+                }
+            }
+
+            // Xóa chỉ các đối tượng Rectangle khỏi DetailCanvas
+            for (int i = DetailCanvas.Children.Count - 1; i >= 0; i--)
+            {
+                if (DetailCanvas.Children[i] is Rectangle)
+                {
+                    DetailCanvas.Children.RemoveAt(i);
+                }
+            }
         }
     }
 }
