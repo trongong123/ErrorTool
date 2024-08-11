@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UTGAutoLoadUnload.Defines;
 using System.IO;
+using System.ComponentModel;
 
 namespace ErrorTool
 {
@@ -20,13 +21,19 @@ namespace ErrorTool
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Point _startPoint;
-        private Rectangle _currentRectangleOverview;
-        private Rectangle _currentRectangleDetail;
+
+        private string selectedImagePathOverview;
+        private string selectedImagePathDetail;
+        private Point startPointOverview;
+        private Point startPointDetail;
+        private Rectangle currentRectangleOverview;
+        private Rectangle currentRectangleDetail;
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
         private void IdTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (int.TryParse(IdTextBox.Text, out int id))
@@ -36,53 +43,56 @@ namespace ErrorTool
             }
         }
 
-        private void LoadOverviewImageButton_Click(object sender, RoutedEventArgs e)
+        private void SelectOverviewImageButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
             if (openFileDialog.ShowDialog() == true)
             {
-                OverviewImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
-                OverviewImage.Width = 590;
-                OverviewImage.Height = 355;
+                selectedImagePathOverview = openFileDialog.FileName;
+                OverviewImage.Source = new BitmapImage(new Uri(selectedImagePathOverview));
             }
         }
 
-        private void LoadDetailImageButton_Click(object sender, RoutedEventArgs e)
+        private void SelectDetailImageButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
             if (openFileDialog.ShowDialog() == true)
             {
-                DetailImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
-                DetailImage.Width = 295;
-                DetailImage.Height = 358;
+                selectedImagePathDetail = openFileDialog.FileName;
+                DetailImage.Source = new BitmapImage(new Uri(selectedImagePathDetail));
             }
         }
 
-        private void OverviewImage_MouseDown(object sender, MouseButtonEventArgs e)
+        private void OverviewCanvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            _startPoint = e.GetPosition(OverviewCanvas);
-            _currentRectangleOverview = new Rectangle
+            startPointOverview = e.GetPosition(OverviewCanvas);
+            currentRectangleOverview = new Rectangle
             {
                 Stroke = Brushes.Red,
-                StrokeThickness = 3
+                StrokeThickness = 2
             };
-            Canvas.SetLeft(_currentRectangleOverview, _startPoint.X);
-            Canvas.SetTop(_currentRectangleOverview, _startPoint.Y);
-            OverviewCanvas.Children.Add(_currentRectangleOverview);
+            Canvas.SetLeft(currentRectangleOverview, startPointOverview.X);
+            Canvas.SetTop(currentRectangleOverview, startPointOverview.Y);
+            OverviewCanvas.Children.Add(currentRectangleOverview);
         }
 
-        private void OverviewImage_MouseMove(object sender, MouseEventArgs e)
+        private void OverviewCanvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if (e.LeftButton == MouseButtonState.Pressed && currentRectangleOverview != null)
             {
                 var pos = e.GetPosition(OverviewCanvas);
-                var x = Math.Min(pos.X, _startPoint.X);
-                var y = Math.Min(pos.Y, _startPoint.Y);
-                var w = Math.Max(pos.X, _startPoint.X) - x;
-                var h = Math.Max(pos.Y, _startPoint.Y) - y;
+                var x = Math.Min(pos.X, startPointOverview.X);
+                var y = Math.Min(pos.Y, startPointOverview.Y);
+                var w = Math.Abs(pos.X - startPointOverview.X);
+                var h = Math.Abs(pos.Y - startPointOverview.Y);
 
-                _currentRectangleOverview.Width = w;
-                _currentRectangleOverview.Height = h;
+                currentRectangleOverview.Width = w;
+                currentRectangleOverview.Height = h;
+
+                Canvas.SetLeft(currentRectangleOverview, x);
+                Canvas.SetTop(currentRectangleOverview, y);
 
                 OverviewXTextBlock.Text = x.ToString();
                 OverviewYTextBlock.Text = y.ToString();
@@ -91,36 +101,34 @@ namespace ErrorTool
             }
         }
 
-        private void OverviewImage_MouseUp(object sender, MouseButtonEventArgs e)
+        private void DetailCanvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // Kết thúc vẽ hình chữ nhật overview
-        }
-
-        private void DetailImage_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            _startPoint = e.GetPosition(DetailCanvas);
-            _currentRectangleDetail = new Rectangle
+            startPointDetail = e.GetPosition(DetailCanvas);
+            currentRectangleDetail = new Rectangle
             {
                 Stroke = Brushes.Blue,
-                StrokeThickness = 3
+                StrokeThickness = 2
             };
-            Canvas.SetLeft(_currentRectangleDetail, _startPoint.X);
-            Canvas.SetTop(_currentRectangleDetail, _startPoint.Y);
-            DetailCanvas.Children.Add(_currentRectangleDetail);
+            Canvas.SetLeft(currentRectangleDetail, startPointDetail.X);
+            Canvas.SetTop(currentRectangleDetail, startPointDetail.Y);
+            DetailCanvas.Children.Add(currentRectangleDetail);
         }
 
-        private void DetailImage_MouseMove(object sender, MouseEventArgs e)
+        private void DetailCanvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if (e.LeftButton == MouseButtonState.Pressed && currentRectangleDetail != null)
             {
                 var pos = e.GetPosition(DetailCanvas);
-                var x = Math.Min(pos.X, _startPoint.X);
-                var y = Math.Min(pos.Y, _startPoint.Y);
-                var w = Math.Max(pos.X, _startPoint.X) - x;
-                var h = Math.Max(pos.Y, _startPoint.Y) - y;
+                var x = Math.Min(pos.X, startPointDetail.X);
+                var y = Math.Min(pos.Y, startPointDetail.Y);
+                var w = Math.Abs(pos.X - startPointDetail.X);
+                var h = Math.Abs(pos.Y - startPointDetail.Y);
 
-                _currentRectangleDetail.Width = w;
-                _currentRectangleDetail.Height = h;
+                currentRectangleDetail.Width = w;
+                currentRectangleDetail.Height = h;
+
+                Canvas.SetLeft(currentRectangleDetail, x);
+                Canvas.SetTop(currentRectangleDetail, y);
 
                 DetailXTextBlock.Text = x.ToString();
                 DetailYTextBlock.Text = y.ToString();
@@ -129,18 +137,13 @@ namespace ErrorTool
             }
         }
 
-        private void DetailImage_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            // Kết thúc vẽ hình chữ nhật detail
-        }
-
         private void ExportButton_Click(object sender, RoutedEventArgs e)
         {
             var result = new
             {
                 Id = int.Parse(IdTextBox.Text),
                 Message = MessageTextBlock.Text,
-                AlertOverviewSource = ((BitmapImage)OverviewImage.Source).UriSource.ToString(),
+                AlertOverviewSource = ConvertToPackUri(selectedImagePathOverview),
                 AlertOverviewHighlightRectangle = new
                 {
                     X = double.Parse(OverviewXTextBlock.Text),
@@ -148,7 +151,7 @@ namespace ErrorTool
                     Width = double.Parse(OverviewWidthTextBlock.Text),
                     Height = double.Parse(OverviewHeightTextBlock.Text)
                 },
-                AlertDetailviewSource = ((BitmapImage)DetailImage.Source).UriSource.ToString(),
+                AlertDetailviewSource = ConvertToPackUri(selectedImagePathDetail),
                 AlertDetailviewHighlightRectangle = new
                 {
                     X = double.Parse(DetailXTextBlock.Text),
@@ -165,7 +168,20 @@ namespace ErrorTool
             };
 
             string json = JsonConvert.SerializeObject(result, Formatting.Indented);
-            File.AppendAllText(@"D:\output.txt", json + Environment.NewLine);
+            File.AppendAllText(@"D:\output.txt", json + Environment.NewLine + ",");
+        }
+
+        private string ConvertToPackUri(string filePath)
+        {
+            string fileName = System.IO.Path.GetFileName(filePath);
+            return $"/UTGAutoLoadUnload;component/Resources/Images/{fileName}";
+        }
+
+        private void ClearRectanglesButton_Click(object sender, RoutedEventArgs e)
+        {
+            OverviewCanvas.Children.Clear();
+            DetailCanvas.Children.Clear();
         }
     }
 }
+

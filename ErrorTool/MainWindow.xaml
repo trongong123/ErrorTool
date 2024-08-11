@@ -5,45 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ErrorTool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000" Width="800">
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="MainWindow" Height="1100" Width="800">
     <Grid>
-        <StackPanel Orientation="Vertical" Margin="10">
-            <TextBox Name="IdTextBox" Width="100" Margin="0,5" TextChanged="IdTextBox_TextChanged"/>
-            <TextBlock Name="MessageTextBlock" Width="300" Margin="0,5"/>
-            <Button Content="Load Overview Image" Width="150" Click="LoadOverviewImageButton_Click" Margin="0,5"/>
-            <Button Content="Load Detail Image" Width="150" Click="LoadDetailImageButton_Click" Margin="0,5"/>
-            <Canvas Name="OverviewCanvas" Width="400" Height="300" MouseDown="OverviewImage_MouseDown" MouseMove="OverviewImage_MouseMove" MouseUp="OverviewImage_MouseUp">
-                <Image Name="OverviewImage" Stretch="None" Width="400" Height="300"/>
-            </Canvas>
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <TextBlock Text="X:"/>
-                <TextBlock Name="OverviewXTextBlock" Width="50"/>
-                <TextBlock Text="Y:"/>
-                <TextBlock Name="OverviewYTextBlock" Width="50"/>
-                <TextBlock Text="Width:"/>
-                <TextBlock Name="OverviewWidthTextBlock" Width="50"/>
-                <TextBlock Text="Height:"/>
-                <TextBlock Name="OverviewHeightTextBlock" Width="50"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <TextBox Name="IdTextBox" Width="100" Margin="0,5" TextChanged="IdTextBox_TextChanged"/>
+                <TextBlock Name="MessageTextBlock" Width="300" Margin="0,5"/>
+                <Button Content="Select Overview Image" Width="150" Click="SelectOverviewImageButton_Click" Margin="0,5"/>
+                <Canvas Name="OverviewCanvas" Width="595" Height="360" Background="LightGray"
+                        MouseDown="OverviewCanvas_MouseDown" MouseMove="OverviewCanvas_MouseMove">
+                    <Image Name="OverviewImage" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           Width="595" Height="360"/>
+                </Canvas>
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBlock Text="X:"/>
+                    <TextBlock Name="OverviewXTextBlock" Width="50"/>
+                    <TextBlock Text="Y:"/>
+                    <TextBlock Name="OverviewYTextBlock" Width="50"/>
+                    <TextBlock Text="Width:"/>
+                    <TextBlock Name="OverviewWidthTextBlock" Width="50"/>
+                    <TextBlock Text="Height:"/>
+                    <TextBlock Name="OverviewHeightTextBlock" Width="50"/>
+                </StackPanel>
+                <Button Content="Select Detail Image" Width="150" Click="SelectDetailImageButton_Click" Margin="0,5"/>
+                <Canvas Name="DetailCanvas" Width="295" Height="360" Background="LightGray"
+                        MouseDown="DetailCanvas_MouseDown" MouseMove="DetailCanvas_MouseMove">
+                    <Image Name="DetailImage" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           Width="295" Height="360"/>
+                </Canvas>
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBlock Text="X:"/>
+                    <TextBlock Name="DetailXTextBlock" Width="50"/>
+                    <TextBlock Text="Y:"/>
+                    <TextBlock Name="DetailYTextBlock" Width="50"/>
+                    <TextBlock Text="Width:"/>
+                    <TextBlock Name="DetailWidthTextBlock" Width="50"/>
+                    <TextBlock Text="Height:"/>
+                    <TextBlock Name="DetailHeightTextBlock" Width="50"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBox Name="Step1TextBox" Width="350" Margin="0,5"/>
+                    <TextBox Name="Step2TextBox" Width="350" Margin="0,5"/>
+                    <TextBox Name="Step3TextBox" Width="350" Margin="0,5"/>
+                </StackPanel>
+                <Button Content="Export to JSON" Width="150" Click="ExportButton_Click" Margin="0,5"/>
+                <Button Content="Clear Rectangles" Width="150" Click="ClearRectanglesButton_Click" Margin="0,5"/>
             </StackPanel>
-            <Canvas Name="DetailCanvas" Width="400" Height="300" MouseDown="DetailImage_MouseDown" MouseMove="DetailImage_MouseMove" MouseUp="DetailImage_MouseUp">
-                <Image Name="DetailImage" Stretch="None" Width="400" Height="300"/>
-            </Canvas>
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <TextBlock Text="X:"/>
-                <TextBlock Name="DetailXTextBlock" Width="50"/>
-                <TextBlock Text="Y:"/>
-                <TextBlock Name="DetailYTextBlock" Width="50"/>
-                <TextBlock Text="Width:"/>
-                <TextBlock Name="DetailWidthTextBlock" Width="50"/>
-                <TextBlock Text="Height:"/>
-                <TextBlock Name="DetailHeightTextBlock" Width="50"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical">
-                <TextBox Name="Step1TextBox" Width="350"/>
-                <TextBox Name="Step2TextBox" Width="350"/>
-                <TextBox Name="Step3TextBox" Width="350"/>
-            </StackPanel>
-            <Button Content="Export to JSON" Width="150" Click="ExportButton_Click" Margin="0,5"/>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
