@@ -38,7 +38,7 @@ namespace ErrorTool
         {
             if (int.TryParse(IdTextBox.Text, out int id))
             {
-                var message = Enum.GetName(typeof(EWarning), id);
+                var message = Enum.GetName(typeof(EAlarm), id);
                 MessageTextBlock.Text = message ?? "Invalid ID";
             }
         }
@@ -94,10 +94,10 @@ namespace ErrorTool
                 Canvas.SetLeft(currentRectangleOverview, x);
                 Canvas.SetTop(currentRectangleOverview, y);
 
-                OverviewXTextBlock.Text = x.ToString();
-                OverviewYTextBlock.Text = y.ToString();
-                OverviewWidthTextBlock.Text = w.ToString();
-                OverviewHeightTextBlock.Text = h.ToString();
+                OverviewXTextBlock.Text = Math.Round(x).ToString();
+                OverviewYTextBlock.Text = Math.Round(y).ToString();
+                OverviewWidthTextBlock.Text = Math.Round(w).ToString();
+                OverviewHeightTextBlock.Text = Math.Round(h).ToString();
             }
         }
 
@@ -130,10 +130,10 @@ namespace ErrorTool
                 Canvas.SetLeft(currentRectangleDetail, x);
                 Canvas.SetTop(currentRectangleDetail, y);
 
-                DetailXTextBlock.Text = x.ToString();
-                DetailYTextBlock.Text = y.ToString();
-                DetailWidthTextBlock.Text = w.ToString();
-                DetailHeightTextBlock.Text = h.ToString();
+                DetailXTextBlock.Text = Math.Round(x).ToString();
+                DetailYTextBlock.Text = Math.Round(y).ToString();
+                DetailWidthTextBlock.Text = Math.Round(w).ToString();
+                DetailHeightTextBlock.Text = Math.Round(h).ToString();
             }
         }
 
@@ -156,7 +156,7 @@ namespace ErrorTool
 
             if (troubleshootingSteps.Count == 0)
             {
-                MessageBox.Show("Please enter at least one troubleshooting step.");
+                MessageBox.Show("Địt mẹ Hiếu, nhập chữ vào");
                 return;
             }
 
@@ -195,7 +195,6 @@ namespace ErrorTool
 
         private void ClearRectanglesButton_Click(object sender, RoutedEventArgs e)
         {
-            // Xóa chỉ các đối tượng Rectangle khỏi OverviewCanvas
             for (int i = OverviewCanvas.Children.Count - 1; i >= 0; i--)
             {
                 if (OverviewCanvas.Children[i] is Rectangle)
@@ -204,7 +203,6 @@ namespace ErrorTool
                 }
             }
 
-            // Xóa chỉ các đối tượng Rectangle khỏi DetailCanvas
             for (int i = DetailCanvas.Children.Count - 1; i >= 0; i--)
             {
                 if (DetailCanvas.Children[i] is Rectangle)
