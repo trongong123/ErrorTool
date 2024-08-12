@@ -38,7 +38,7 @@ namespace ErrorTool
         {
             if (int.TryParse(IdTextBox.Text, out int id))
             {
-                var message = Enum.GetName(typeof(EAlarm), id);
+                var message = Enum.GetName(typeof(EWarning), id);
                 MessageTextBlock.Text = message ?? "Invalid ID";
             }
         }
@@ -167,24 +167,28 @@ namespace ErrorTool
                 AlertOverviewSource = ConvertToPackUri(selectedImagePathOverview),
                 AlertOverviewHighlightRectangle = new
                 {
-                    X = double.Parse(OverviewXTextBlock.Text),
-                    Y = double.Parse(OverviewYTextBlock.Text),
-                    Width = double.Parse(OverviewWidthTextBlock.Text),
-                    Height = double.Parse(OverviewHeightTextBlock.Text)
+                    X = (int)Math.Round(double.Parse(OverviewXTextBlock.Text)),
+                    Y = (int)Math.Round(double.Parse(OverviewYTextBlock.Text)),
+                    Width = (int)Math.Round(double.Parse(OverviewWidthTextBlock.Text)),
+                    Height = (int)Math.Round(double.Parse(OverviewHeightTextBlock.Text))
                 },
                 AlertDetailviewSource = ConvertToPackUri(selectedImagePathDetail),
                 AlertDetailviewHighlightRectangle = new
                 {
-                    X = double.Parse(DetailXTextBlock.Text),
-                    Y = double.Parse(DetailYTextBlock.Text),
-                    Width = double.Parse(DetailWidthTextBlock.Text),
-                    Height = double.Parse(DetailHeightTextBlock.Text)
+                    X = (int)Math.Round(double.Parse(DetailXTextBlock.Text)),
+                    Y = (int)Math.Round(double.Parse(DetailYTextBlock.Text)),
+                    Width = (int)Math.Round(double.Parse(DetailWidthTextBlock.Text)),
+                    Height = (int)Math.Round(double.Parse(DetailHeightTextBlock.Text))
                 },
                 TroubleshootingSteps = troubleshootingSteps
             };
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                FloatFormatHandling = FloatFormatHandling.Symbol
+            };
 
             string json = JsonConvert.SerializeObject(result, Formatting.Indented);
-            File.AppendAllText(@"D:\output.txt", json + Environment.NewLine + ",");
+            File.AppendAllText(@"D:\output.csv", json + Environment.NewLine + ",");
         }
 
         private string ConvertToPackUri(string filePath)

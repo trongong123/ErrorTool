@@ -53,7 +53,7 @@
         TraySupplier_SubDoor_SensorNotDetected,
         TraySupplier_SubDoor_UnlockFail,
 
-
+        TraySupplier_Jig_Full = 3100,
 
         // Right-In warning start with index 4000
         RightIn_Slider_NotDetected = 4000,
@@ -82,7 +82,7 @@
         NGTray_JigType_NotMatch,
         NGTray_SubDoor_NotLocked,
         NGTray_SubDoor_SensorNotDetected,
-        NGTray_Door_UnlockFail,
+        NGTray_SubDoor_UnlockFail,
         NGTray_UnAlign_Fail,
 
 
@@ -104,8 +104,8 @@
         Vision_NoOutputReturn,
         Vision_RunTimeError,
 
-        //NGTrayTransfer warning start with index 6000,
-        NGTray_TransferVacuumOffFail,
+        //NGTrayTransfer warning start with index 7000,
+        NGTray_TransferVacuumOffFail = 7000,
         NGTray_TransferVacuumOnFail,
 
         TEST_WARNING = 9999,
