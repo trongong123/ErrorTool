@@ -2,115 +2,247 @@
 {
     public enum EAlarm
     {
-        Main_Air_Not_Supplied = 0,
+        None = -1,
 
-        // Robot alarm start with index 1000
-        Robot_MoveOrigin_RequestFail = 1000,
-        Robot_Origin_MoveFail,
-        Robot_ReadyPick_RequestFail,
-        Robot_ReadyPick_MoveFail,
-        Robot_ReadyPick1_RequestFail,
-        Robot_ReadyPick1_MoveFail,
-        Robot_Pick1_RequestFail,
-        Robot_Pick1_MoveFail,
-        Robot_Pick_RequestFail,
-        Robot_Pick_MoveFail,
-        Robot_Pick2_RequestFail,
-        Robot_Pick2_MoveFail,
-        Robot_ReadyPick2_RequestFail,
-        Robot_ReadyPick2_MoveFail,
-        Robot_MoveReadyPlace_RequestFail,
-        Robot_ReadyPlace_MoveFail,
-        Robot_MoveReadyPlace1_RequestFail,
-        Robot_ReadyPlace1_MoveFail,
-        Robot_MoveReadyPlace2_RequestFail,
-        Robot_ReadyPlace2_MoveFail,
-        Robot_MovePlace1_RequestFail,
-        Robot_Place1_MoveFail,
-        Robot_MovePlace_RequestFail,
-        Robot_Place_MoveFail,
-        Robot_MovePlace2_RequestFail,
-        Robot_Place2_MoveFail,
-        Robot_MoveReady_RequestFail,
-        Robot_Ready_MoveFail,
+        // System Level Alarms
+        MainAirNotSupplied = 0,
+        MainPowerDown = 1,
+        MotionAlarmDetected = 2,
+        DoorOpen = 3,
+        LightCurtainLeftDetected = 4,
+        LightCurtainRightDetected = 5,
 
-        Robot_MoveReadyPlaceNG_RequestFail,
-        Robot_ReadyPlaceNG_MoveFail,
-        Robot_MoveReadyPlaceNG1_RequestFail,
-        Robot_ReadyPlaceNG1_MoveFail,
-        Robot_MovePlaceNG1_RequestFail,
-        Robot_PlaceNG1_MoveFail,
-        Robot_MovePlaceNG2_RequestFail,
-        Robot_PlaceNG2_MoveFail,
+        //InConveyor
+        InConveyor = 1000,
 
-        Robot_MoveReadyPlaceNG2_RequestFail,
-        Robot_ReadyPlaceNG2_MoveFail,
+        //InWorkConveyor
+        InWorkConveyor = 2000,
+        InWorkConveyor_TAxis_Origin_Fail,
+        InWorkConveyor_TAxis_MoveWorkPosition_Fail,
+        InWorkConveyor_TAxis_MoveLoadPosition_Fail,
 
-        Robot_MoveReadyVision_RequestFail,
-        Robot_ReadyVision_MoveFail,
-        Robot_MoveVision_RequestFail,
-        Robot_Vision_MoveFail,
-        Robot_ConnectFail,
-        Robot_NoReadyResponse,
-        Robot_SetModelFail,
+        //BufferConveyor
+        BufferConveyor = 3000,
 
-        // Left-In alarm start with index 2000
-        LeftIn_ZAxis_OriginFail = 2000,
-        LeftIn_ZAxis_TraySearchTimeOut,
+        //OutWorkConveyor
+        OutWorkConveyor = 4000,
+        OutWorkConveyor_TAxis_Origin_Fail,
+        OutWorkConveyor_TAxis_MoveWorkPosition_Fail,
+        OutWorkConveyor_TAxis_MoveLoadPosition_Fail,
+
+        //OutConveyor
+        OutConveyor = 5000,
+
+        //VinylClean
+        VinylClean = 6000,
+
+        //Robot Load
+        RobotLoad = 7000,
+        RobotLoad_No_Ready_Response,
+        RobotLoad_SetModel_Fail,
+        RobotLoad_MoveMotionCommand_Timeout,
+        Robot_SendMotionCommand_Fail,
 
 
-        LeftIn_CST_DoorLockFail,
-        LeftIn_Slider_LockFail,
-        LeftIn_Slider_UnlockFail,
-        LeftIn_Door_LockFail,
-        LeftIn_Door_UnlockFail,
-        LeftIn_ZAxis_MoveChangePositionTimeout,
-        LeftIn_ZAxis_MoveTiltPositionTimeout,
-        LeftIn_ZAxis_ConnectFail,
-        LeftIn_Motion_ConnectFail,
-        LeftIn_ZAxis_MoveTimeout,
+        //Align Fixture
+        AlignFixture = 8000,
 
-        // TraySupplier alarm start with index 3000
-        TraySupplier_ZAxis_OriginFail = 3000,
-        TraySupplier_ZAxis_TraySearchTimeOut,
-        
-        TraySupplier_ZAxis_MoveStartWorkingPositionTimeout,
-        TraySupplier_ZAxis_MoveChangePositionTimeout,
-        TraySupplier_ZAxis_MoveTimeout,
-        TraySupplier_ZAxis_ConnectFail,
-        TraySupplier_Motion_ConnectFail,
+        //Transfer Fixture
+        TransferFixture = 9000,
+        TransferFixtureOriginFixtureDetect = 9001,
+        TransferFixture_YAxis_MoveLoadPosition_Fail,
+        TransferFixture_YAxis_MoveUnloadPosition_Fail,
 
-        // Right-In alarm start with index 4000
-        RightIn_ZAxis_OriginFail = 4000,
-        RightIn_ZAxis_TraySearchTimeOut,
-        
-        RightIn_CST_DoorLockFail,
-        RightIn_ZAxis_MoveChangPositionTimeout,
-        RightIn_CST_SliderLockFail,
-        RightIn_ZAxis_MoveTiltPositionTimeout,
-        RightIn_ZAxis_ConnectFail,
-        RightIn_Motion_ConnectFail,
+        //Detach
+        Detach = 10000,
+        Detach_ShuttleTransferZAxis_MoveReadyPosition_Fail,
+        Detach_ShuttleTransferXAxis_MoveDetachCheckPosition_Fail,
+        Detach_ShuttleTransferXAxis_MoveUnloadPosition_Fail,
+        Detach_ShuttleTransferZAxis_MoveUnloadPosition_Fail,
+        Detach_ShuttleTransferXAxis_MoveDetachPosition_Fail,
+        Detach_ZAxis_MoveDetachReadyPosition_Fail,
+        Detach_ZAxis_MoveDetachPosition1_Fail,
+        Detach_ZAxis_MoveDetachPosition2_Fail,
 
-        //NG Tray alarm start with index 5000
+        //Remove Film
+        RemoveFilm = 11000,
 
-        NGTray_ZAxis_OriginFail = 5000,
-        NGTray_ZAxis_TraySearchTimeout,
-        NGTray_Door_LockFail,
-        NGTray_Door_UnlockFail,
-        NGTray_ZAxis_MoveChangePositionTimeout,
-        NGTray_ZAxis_ConnectFail,
-        NGTray_Motion_ConnectFail,
-        NGTray_ZAxis_MoveTimeout,
+        //Glass Transfer
+        GlassTransfer = 12000,
+        GlassTransfer_YAxis_MoveReadyPosition_Fail,
+        GlassTransfer_ZAxis_MoveReadyPosition_Fail,
+        GlassTransfer_YAxis_MovePickPosition_Fail,
+        GlassTransfer_ZAxis_MovePickPosition_Fail,
+        GlassTransfer_YAxis_MovePlacePosition_Fail,
+        GlassTransfer_ZAxis_MovePlacePosition_Fail,
 
-        //LeftInTransfer alarm start with index 6000,
+        //Align Glass Left
+        AlignGlassLeft = 13000,
 
-        //NGTrayTransfer alarm start with index 6000,
-        NGTray_Transfer_Origin_VacuumOn = 7000,
+        //Align Glass Right
+        AlignGlassRight = 14000,
+
+        //Transfer In Shuttle Left
+        TransferInShuttleLeft = 15000,
+        TransferInShuttleLeft_YAxis_Origin_Fail,
+        TransferInShuttleLeft_ZAxis_Origin_Fail,
+        TransferInShuttleLeft_YAxis_MoveReadyPosition_Fail,
+        TransferInShuttleLeft_ZAxis_MoveReadyPosition_Fail,
+        TransferInShuttleLeft_YAxis_MovePlacePosition_Fail,
+        TransferInShuttleLeft_ZAxis_MovePlacePosition_Fail,
+        TransferInShuttleLeft_YAxis_MovePickPosition1_Fail,
+        TransferInShuttleLeft_YAxis_MovePickPosition2_Fail,
+        TransferInShuttleLeft_YAxis_MovePickPosition3_Fail,
+        TransferInShuttleLeft_ZAxis_MovePickPosition_Fail,
 
 
-        Vision_AlignCamera_ConnectFail = 8000,
-        Vision_LightController_ConnectFail,
+        //Transfer In Shuttle Right
+        TransferInShuttleRight = 16000,
+        TransferInShuttleRight_YAxis_Origin_Fail,
+        TransferInShuttleRight_ZAxis_Origin_Fail,
+        TransferInShuttleRight_YAxis_MoveReadyPosition_Fail,
+        TransferInShuttleRight_ZAxis_MoveReadyPosition_Fail,
+        TransferInShuttleRight_YAxis_MovePlacePosition_Fail,
+        TransferInShuttleRight_ZAxis_MovePlacePosition_Fail,
+        TransferInShuttleRight_YAxis_MovePickPosition1_Fail,
+        TransferInShuttleRight_YAxis_MovePickPosition2_Fail,
+        TransferInShuttleRight_YAxis_MovePickPosition3_Fail,
+        TransferInShuttleRight_ZAxis_MovePickPosition_Fail,
 
-        TEST_ALARM = 9999,
+        //WET Clean Left
+        WETCleanLeft = 17000,
+        WETCleanLeft_XAxis_Origin_Fail,
+        WETCleanLeft_YAxis_Origin_Fail,
+        WETCleanLeft_TAxis_Origin_Fail,
+        WETCleanLeft_FeedingAxis_Origin_Fail,
+        WETCleanLeft_XAxis_MoveLoadPosition_Fail,
+        WETCleanLeft_YAxis_MoveLoadPosition_Fail,
+        WETCleanLeft_TAxis_MoveLoadPosition_Fail,
+        WETCleanLeft_XAxis_MoveCleanHorizontalPosition_Fail,
+        WETCleanLeft_YAxis_MoveCleanHorizontalPosition_Fail,
+        WETCleanLeft_TAxis_MoveCleanHorizontalPosition_Fail,
+        WETCleanLeft_XAxis_MoveCleanVerticalPosition_Fail,
+        WETCleanLeft_YAxis_MoveCleanVerticalPosition_Fail,
+        WETCleanLeft_TAxis_MoveCleanVerticalPosition_Fail,
+        WETCleanLeft_CleanHorizontal_Fail,
+        WETCleanLeft_CleanVertical_Fail,
+        WETCleanLeft_XAxis_MoveUnloadPosition_Fail,
+        WETCleanLeft_YAxis_MoveUnloadPosition_Fail,
+        WETCleanLeft_TAxis_MoveUnloadPosition_Fail,
+
+        //WET Clean Right
+        WETCleanRight = 18000,
+        WETCleanRight_XAxis_Origin_Fail,
+        WETCleanRight_YAxis_Origin_Fail,
+        WETCleanRight_TAxis_Origin_Fail,
+        WETCleanRight_FeedingAxis_Origin_Fail,
+        WETCleanRight_XAxis_MoveLoadPosition_Fail,
+        WETCleanRight_YAxis_MoveLoadPosition_Fail,
+        WETCleanRight_TAxis_MoveLoadPosition_Fail,
+        WETCleanRight_XAxis_MoveCleanHorizontalPosition_Fail,
+        WETCleanRight_YAxis_MoveCleanHorizontalPosition_Fail,
+        WETCleanRight_TAxis_MoveCleanHorizontalPosition_Fail,
+        WETCleanRight_XAxis_MoveCleanVerticalPosition_Fail,
+        WETCleanRight_YAxis_MoveCleanVerticalPosition_Fail,
+        WETCleanRight_TAxis_MoveCleanVerticalPosition_Fail,
+        WETCleanRight_CleanHorizontal_Fail,
+        WETCleanRight_CleanVertical_Fail,
+        WETCleanRight_XAxis_MoveUnloadPosition_Fail,
+        WETCleanRight_YAxis_MoveUnloadPosition_Fail,
+        WETCleanRight_TAxis_MoveUnloadPosition_Fail,
+
+        //Transfer Rotation Left
+        TransferRotationLeft = 19000,
+        TransferRotationLeft_ZAxis_Origin_Fail,
+        TransferRotationLeft_ZAxis_MoveReadyPosition_Fail,
+        TransferRotationLeft_ZAxis_MovePickPosition_Fail,
+        TransferRotationLeft_ZAxis_Move_TransferBeforeRotatePosition_Fail,
+        TransferRotationLeft_ZAxis_Move_TransferAfterRotatePosition_Fail,
+        TransferRotationLeft_ZAxis_MovePlacePosition_Fail,
+
+        //Transfer Rotation Right
+        TransferRotationRight = 20000,
+        TransferRotationRight_ZAxis_Origin_Fail,
+        TransferRotationRight_ZAxis_MoveReadyPosition_Fail,
+        TransferRotationRight_ZAxis_MovePickPosition_Fail,
+        TransferRotationRight_ZAxis_Move_TransferBeforeRotatePosition_Fail,
+        TransferRotationRight_ZAxis_Move_TransferAfterRotatePosition_Fail,
+        TransferRotationRight_ZAxis_MovePlacePosition_Fail,
+
+        //AF Clean Left
+        AFCleanLeft = 21000,
+        AFCleanLeft_XAxis_Origin_Fail,
+        AFCleanLeft_YAxis_Origin_Fail,
+        AFCleanLeft_TAxis_Origin_Fail,
+        AFCleanLeft_FeedingAxis_Origin_Fail,
+        AFCleanLeft_XAxis_MoveLoadPosition_Fail,
+        AFCleanLeft_YAxis_MoveLoadPosition_Fail,
+        AFCleanLeft_TAxis_MoveLoadPosition_Fail,
+        AFCleanLeft_XAxis_MoveCleanHorizontalPosition_Fail,
+        AFCleanLeft_YAxis_MoveCleanHorizontalPosition_Fail,
+        AFCleanLeft_TAxis_MoveCleanHorizontalPosition_Fail,
+        AFCleanLeft_XAxis_MoveCleanVerticalPosition_Fail,
+        AFCleanLeft_YAxis_MoveCleanVerticalPosition_Fail,
+        AFCleanLeft_TAxis_MoveCleanVerticalPosition_Fail,
+        AFCleanLeft_CleanHorizontal_Fail,
+        AFCleanLeft_CleanVertical_Fail,
+        AFCleanLeft_XAxis_MoveUnloadPosition_Fail,
+        AFCleanLeft_YAxis_MoveUnloadPosition_Fail,
+        AFCleanLeft_TAxis_MoveUnloadPosition_Fail,
+
+        //AF Clean Right
+        AFCleanRight = 22000,
+        AFCleanRight_XAxis_Origin_Fail,
+        AFCleanRight_YAxis_Origin_Fail,
+        AFCleanRight_TAxis_Origin_Fail,
+        AFCleanRight_FeedingAxis_Origin_Fail,
+        AFCleanRight_XAxis_MoveLoadPosition_Fail,
+        AFCleanRight_YAxis_MoveLoadPosition_Fail,
+        AFCleanRight_TAxis_MoveLoadPosition_Fail,
+        AFCleanRight_XAxis_MoveCleanHorizontalPosition_Fail,
+        AFCleanRight_YAxis_MoveCleanHorizontalPosition_Fail,
+        AFCleanRight_TAxis_MoveCleanHorizontalPosition_Fail,
+        AFCleanRight_XAxis_MoveCleanVerticalPosition_Fail,
+        AFCleanRight_YAxis_MoveCleanVerticalPosition_Fail,
+        AFCleanRight_TAxis_MoveCleanVerticalPosition_Fail,
+        AFCleanRight_CleanHorizontal_Fail,
+        AFCleanRight_CleanVertical_Fail,
+        AFCleanRight_XAxis_MoveUnloadPosition_Fail,
+        AFCleanRight_YAxis_MoveUnloadPosition_Fail,
+        AFCleanRight_TAxis_MoveUnloadPosition_Fail,
+
+        //Unload Glass Left
+        UnloadTransferLeft = 23000,
+        UnloadTransferLeft_YAxis_Origin_Fail,
+        UnloadTransferLeft_ZAxis_Origin_Fail,
+        UnloadTransferLeft_YAxis_MoveReadyPosition_Fail,
+        UnloadTransferLeft_ZAxis_MoveReadyPosition_Fail,
+        UnloadTransferLeft_YAxis_MovePickPosition_Fail,
+        UnloadTransferLeft_ZAxis_MovePickPosition_Fail,
+        UnloadTransferLeft_YAxis_MovePlacePosition1_Fail,
+        UnloadTransferLeft_YAxis_MovePlacePosition2_Fail,
+        UnloadTransferLeft_YAxis_MovePlacePosition3_Fail,
+        UnloadTransferLeft_YAxis_MovePlacePosition4_Fail,
+        UnloadTransferLeft_ZAxis_MovePlacePosition_Fail,
+
+        //Unload Glass Right
+        UnloadTransferRight = 24000,
+        UnloadTransferRight_YAxis_Origin_Fail,
+        UnloadTransferRight_ZAxis_Origin_Fail,
+        UnloadTransferRight_YAxis_MoveReadyPosition_Fail,
+        UnloadTransferRight_ZAxis_MoveReadyPosition_Fail,
+        UnloadTransferRight_YAxis_MovePickPosition_Fail,
+        UnloadTransferRight_ZAxis_MovePickPosition_Fail,
+        UnloadTransferRight_YAxis_MovePlacePosition1_Fail,
+        UnloadTransferRight_YAxis_MovePlacePosition2_Fail,
+        UnloadTransferRight_YAxis_MovePlacePosition3_Fail,
+        UnloadTransferRight_YAxis_MovePlacePosition4_Fail,
+        UnloadTransferRight_ZAxis_MovePlacePosition_Fail,
+
+        //Unload Align
+        UnloadAlign = 25000,
+
+        //Robot Unload
+        RobotUnload = 26000,
     }
 }

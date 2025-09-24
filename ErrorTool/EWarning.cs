@@ -2,112 +2,208 @@
 {
     public enum EWarning
     {
-        // Robot warning start with index 1000
-        Robot_Tool_GlassDetectProblem = 1000,
-        Robot_Pick_Fail,
-        Robot_SafetyFenceSwitch_Not_Active,
-        Robot_EmergencyStop_Active,
-        Robot_Automatic_External_Not_active,
-        Robot_NoProgramSelected,
-        Robot_MessageConfirmRequire,
-        Robot_Driver_Not_Ready,
-        Robot_Programing_Not_Running,
-        Robot_NotConnected,
-        Robot_Origin_Vacuum_On,
-        Robot_Place_Fail,
+        //Root
+        Root = 0,
+        ManualModeSwitch,
+        DoorOpen,
+        DoorNotSafetyLock,
+        LightCurtainLeftDetected,
+        LightCurtainRightDetected,
+        InitializeTimeout,
 
-        // Left-In warning start with index 2000
-        LeftIn_Slider_NotDetected = 2000,
-        LeftIn_Slider_NotLocked,
-        LeftIn_Slider_UnlockFail,
-        LeftIn_Jig_NotDetected,
-        LeftIn_JigType_NotMatch,
-        LeftIn_SubDoor_NotLocked,
-        LeftIn_SubDoor_SensorNotDetected,
-        LeftIn_SubDoor_UnlockFail,
-        LeftIn_UnAlign_Fail,
+        //InConveyor
+        InConveyor = 1000,
+        InConveyor_CST_Position_Error,
+        InConveyor_CST_Stopper_Up_Fail,
+        InConveyor_CST_Stopper_Down_Fail,
+
+        //InWorkConveyor
+        InWorkConveyor = 2000,
+        InWorkConveyorCSTNotDetect,
+        InWorkConveyor_TiltCylinder_Up_Fail,
+        InWorkConveyor_TiltCylinder_Down_Fail,
+        InWorkConveyor_SupportCV_Up_Fail,
+        InWorkConveyor_SupportCV_Down_Fail,
+        InWorkConveyor_FixCylinder_Backward_Fail,
+        InWorkConveyor_FixCylinder_Forward_Fail,
+
+        //BufferConveyor
+        BufferConveyor = 3000,
+        BufferConveyor_CST_Position_Error,
+        BufferConveyor_Stopper1_Up_Fail,
+        BufferConveyor_Stopper1_Down_Fail,
+        BufferConveyor_Stopper2_Up_Fail,
+        BufferConveyor_Stopper2_Down_Fail,
+
+        //OutWorkConveyor
+        OutWorkConveyor = 4000,
+        OutWorkConveyorCSTNotDetect,
+        OutWorkConveyor_TiltCylinder_Up_Fail,
+        OutWorkConveyor_TiltCylinder_Down_Fail,
+        OutWorkConveyor_SupportCV_Up_Fail,
+        OutWorkConveyor_SupportCV_Down_Fail,
+        OutWorkConveyor_FixCylinder_Backward_Fail,
+        OutWorkConveyor_FixCylinder_Forward_Fail,
+
+        //OutConveyor
+        OutConveyor = 5000,
+        OutConveyor_Stopper_Up_Fail,
+        OutConveyor_Stopper_Down_Fail,
+
+        //VinylClean
+        VinylClean = 6000,
+        VinylCleanFixtureNotDetect,
+        VinylClean_FixtureCylinder_Clamp_Fail,
+        VinylClean_FixtureCylinder_UnClamp_Fail,
+        VinylClean_PusherCylinder_Up_Fail,
+        VinylClean_PusherCylinder_Down_Fail,
+        VinylClean_RollerBwFwCylinder_Backward_Fail,
+        VinylClean_RollerBwFwCylinder_Forward_Fail,
+
+        //Robot Load
+        RobotLoad = 7000,
+        RobotLoad_Connect_Fail,
+        RobotLoad_Programing_Not_Running,
+        RobotLoadOriginFixtureDetect,
+        RobotLoad_Home_Manual_By_TeachingPendant,
+        RobotLoad_Cylinder_Clamp_Fail,
+        RobotLoad_Cylinder_UnClamp_Fail,
+        RobotLoad_Cylinder_Backward_Fail,
+        RobotLoad_Cylinder_Forward_Fail,
+
+        //Fixture Align
+        FixtureAlign = 8000,
+        FixtureAlignTiltDetect = 8001,
+        FixtureAlignReverseDetect = 8002,
+        FixtureAlignLoadFail = 8003,
+        FixtureAlign_AlignCylinder_Backward_Fail,
+        FixtureAlign_AlignCylinder_Forward_Fail,
+
+        //Transfer Fixture
+        TransferFixture = 9000,
+        TransferFixtureOriginFixtureDetect = 9001,
+        TransferFixture_UpDownCylinder_Up_Fail,
+        TransferFixture_UpDownCylinder_Down_Fail,
+        TransferFixture_ClampCylinder_Clamp_Fail,
+        TransferFixture_ClampCylinder_UnClamp_Fail,
+
+        //Detach
+        Detach = 10000,
+        DetachFail = 10001,
+        Detach_FixCylinder_Backward_Fail,
+        Detach_FixCylinder_Forward_Fail,
+        Detach_DetachCylinder1_Up_Fail,
+        Detach_DetachCylinder1_Down_Fail,
+        Detach_DetachCylinder2_Up_Fail,
+        Detach_DetachCylinder2_Down_Fail,
+
+        //Remove Film
+        RemoveFilm = 11000,
+        RemoveFilm_FixCylinder_Backward_Fail,
+        RemoveFilm_FixCylinder_Forward_Fail,
+        RemoveFilm_TransferCylinder_Backward_Fail,
+        RemoveFilm_TransferCylinder_Forward_Fail,
+        RemoveFilm_UpDownCylinder1_Up_Fail,
+        RemoveFilm_UpDownCylinder1_Down_Fail,
+        RemoveFilm_UpDownCylinder2_Up_Fail,
+        RemoveFilm_UpDownCylinder2_Down_Fail,
+        RemoveFilm_PusherCylinder1_Up_Fail,
+        RemoveFilm_PusherCylinder1_Down_Fail,
+        RemoveFilm_PusherCylinder2_Up_Fail,
+        RemoveFilm_PusherCylinder2_Down_Fail,
+        RemoveFilm_ClampCylinder_Clamp_Fail,
+        RemoveFilm_ClampCylinder_UnClamp_Fail,
+
+        //Glass Transfer
+        GlassTransfer = 12000,
+        GlassTransfer_UpDownCylinder_Up_Fail,
+        GlassTransfer_UpDownCylinder_Down_Fail,
+
+        //Align Glass Left
+        GlassAlignLeft = 13000,
+        GlassAlignLeft_AlignCylinder_Up_Fail,
+        GlassAlignLeft_AlignCylinder_Down_Fail,
+        GlassAlignLeft_GlassNotDetect,
+
+        //Align Glass Right
+        GlassAlignRight = 14000,
+        GlassAlignRight_AlignCylinder_Up_Fail,
+        GlassAlignRight_AlignCylinder_Down_Fail,
+        GlassAlignRight_GlassNotDetect,
+
+        //Transfer In Shuttle Left
+        TransferInShuttleLeft = 15000,
+        TransferInShuttleLeft_RotateCylinder_180D_Fail,
+        TransferInShuttleLeft_RotateCylinder_0D_Fail,
+
+        //Transfer In Shuttle Right
+        TransferInShuttleRight = 16000,
+        TransferInShuttleRight_RotateCylinder_180D_Fail,
+        TransferInShuttleRight_RotateCylinder_0D_Fail,
+
+        //WET Clean Left
+        WETCleanLeft = 17000,
+        WETCleanLeft_PusherCylinder_Up_Fail,
+        WETCleanLeft_PusherCylinder_Down_Fail,
+        WETCleanLeft_FeedingRoller_NotDetect,
+        WETCleanLeft_WiperClean_NotDetect,
+
+        //WET Clean Right
+        WETCleanRight = 18000,
+        WETCleanRight_PusherCylinder_Up_Fail,
+        WETCleanRight_PusherCylinder_Down_Fail,
+        WETCleanRight_FeedingRoller_NotDetect,
+        WETCleanRight_WiperClean_NotDetect,
+
+        //Transfer Rotation Left
+        TransferRotationLeft = 19000,
+        TransferRotationLeft_Cylinder_Backward_Fail,
+        TransferRotationLeft_Cylinder_Forward_Fail,
+        TransferRotationLeft_RotationCylinder_0D_Fail,
+        TransferRotationLeft_RotationCylinder_180D_Fail,
+        TransferRotationLeft_Cylinder_Up_Fail,
+        TransferRotationLeft_Cylinder_Down_Fail,
+        TransferRotationLeft_RotateVac_Check_Fail,
+        TransferRotationLeft_GlassVacAfterRotate_Check_Fail,
 
 
-        LeftIn_Transfer_UpFail,
-        LeftIn_Transfer_DownFail,
-        LeftIn_Transfer_BWFail,
-        LeftIn_Transfer_FWFail,
-        LeftIn_TrayType_DetectFail,
-        LeftIn_TrayAlign_ForwardFail,
-        LeftIn_TrayAlign_BackwardFail,
-        LeftIn_SPT_DownFail,
-        LeftIn_CST_UpFail,
-        LeftIn_SPT_UpFail,
-        LeftIn_CST_DownFail,
-        LeftIn_Transfer_UnGripFail,
-        LeftInTransfer_UpFail,
-        LeftIn_Transfer_GripFail,
+        //Transfer Rotation Right
+        TransferRotationRight = 20000,
+        TransferRotationRight_Cylinder_Backward_Fail,
+        TransferRotationRight_Cylinder_Forward_Fail,
+        TransferRotationRight_RotationCylinder_0D_Fail,
+        TransferRotationRight_RotationCylinder_180D_Fail,
+        TransferRotationRight_Cylinder_Up_Fail,
+        TransferRotationRight_Cylinder_Down_Fail,
+        TransferRotationRight_RotateVac_Check_Fail,
+        TransferRotationRight_GlassVacAfterRotate_Check_Fail,
 
-        // TraySupplier warning start with index 3000
-        TraySupplier_Slider_NotDetected = 3000,
-        TraySupplier_Slider_NotLocked,
-        TraySupplier_Slider_UnlockFail,
-        TraySupplier_Jig_NotDetected,
-        TraySupplier_JigType_NotMatch,
-        TraySupplier_SubDoor_NotLocked,
-        TraySupplier_SubDoor_SensorNotDetected,
-        TraySupplier_SubDoor_UnlockFail,
+        //AF Clean Left
+        AFCleanLeft = 21000,
+        AFCleanLeft_PusherCylinder_Up_Fail,
+        AFCleanLeft_PusherCylinder_Down_Fail,
+        AFCleanLeft_FeedingRoller_NotDetect,
+        AFCleanLeft_WiperClean_NotDetect,
 
-        TraySupplier_Jig_Full = 3100,
+        //AF Clean Right
+        AFCleanRight = 22000,
+        AFCleanRight_PusherCylinder_Up_Fail,
+        AFCleanRight_PusherCylinder_Down_Fail,
+        AFCleanRight_FeedingRoller_NotDetect,
+        AFCleanRight_WiperClean_NotDetect,
 
-        // Right-In warning start with index 4000
-        RightIn_Slider_NotDetected = 4000,
-        RightIn_Slider_NotLocked,
-        RightIn_Slider_UnlockFail,
-        RightIn_Jig_NotDetected,
-        RightIn_JigType_NotMatch,
-        RightIn_SubDoor_NotLocked,
-        RightIn_SubDoor_SensorNotDetected,
-        RightIn_SubDoor_UnlockFail,
+        //Unload Glass Left
+        UnloadTransferLeft = 23000,
 
+        //Unload Glass Right
+        UnloadTransferRight = 24000,
 
+        //Unload Align
+        UnloadAlign = 25000,
+        UnloadAlign_AlignCylinder_Up_Fail,
+        UnloadAlign_AlignCylinder_Down_Fail,
 
-        RightIn_CST_UpFail,
-        RightIn_SPT_UpFail,
-        RightIn_SPT_DownFail,
-        RightIn_CST_DownFail,
-
-
-
-        // NG Tray warning start with index 5000
-        NGTray_Slider_NotDetected = 5000,
-        NGTray_Slider_NotLocked,
-        NGTray_Slider_UnlockFail,
-        NGTray_Jig_NotDetected,
-        NGTray_JigType_NotMatch,
-        NGTray_SubDoor_NotLocked,
-        NGTray_SubDoor_SensorNotDetected,
-        NGTray_SubDoor_UnlockFail,
-        NGTray_UnAlign_Fail,
-
-
-        NGTray_Transfer_UpFail,
-        NGTray_Transfer_DownFail,
-        NGTray_TransferBWFail,
-        NGTray_TransferFWFail,
-        NGTray_EndUp_Not_Detect,
-        NGTray_TrayType_DetectFail,
-        NGTray_TrayAlign_ForwardFail,
-        NGTray_TrayAlign_BackwardFail,
-
-
-        //Vision warning start with index 6000
-        Vision_Flow_Not_Contain_GrabTool = 6000,
-        Camera_In_GrabTool_Not_Initial,
-        Vision_Flow_Not_Contain_OutputTool,
-        Camera_Not_Connected,
-        Vision_NoOutputReturn,
-        Vision_RunTimeError,
-
-        //NGTrayTransfer warning start with index 7000,
-        NGTray_TransferVacuumOffFail = 7000,
-        NGTray_TransferVacuumOnFail,
-
-        TEST_WARNING = 9999,
+        //Robot Unload
+        RobotUnload = 26000,
     }
 }

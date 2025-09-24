@@ -194,7 +194,7 @@ namespace ErrorTool
         private string ConvertToPackUri(string filePath)
         {
             string fileName = System.IO.Path.GetFileName(filePath);
-            return $"/UTGAutoLoadUnload;component/Resources/Images/{fileName}";
+            return $"/PIFilmAutoDetachCleanMC;component/Resource/Image/{fileName}";
         }
 
         private void ClearRectanglesButton_Click(object sender, RoutedEventArgs e)
