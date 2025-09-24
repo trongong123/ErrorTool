@@ -193,8 +193,26 @@ namespace ErrorTool
 
         private string ConvertToPackUri(string filePath)
         {
-            string fileName = System.IO.Path.GetFileName(filePath);
-            return $"/PIFilmAutoDetachCleanMC;component/Resource/Image/{fileName}";
+            if (string.IsNullOrWhiteSpace(filePath))
+            {
+                return string.Empty;
+            }
+
+            string normalizedPath = filePath.Replace('\\', '/');
+            string[] segments = normalizedPath.Split('/', StringSplitOptions.RemoveEmptyEntries);
+            int resourceIndex = Array.FindIndex(segments, segment => segment.Equals("Resource", StringComparison.OrdinalIgnoreCase));
+
+            string relativePath;
+            if (resourceIndex >= 0)
+            {
+                relativePath = string.Join('/', segments[resourceIndex..]);
+            }
+            else
+            {
+                relativePath = $"Resource/Image/{System.IO.Path.GetFileName(filePath)}";
+            }
+
+            return $"/PIFilmAutoDetachCleanMC;component/{relativePath}";
         }
 
         private void ClearRectanglesButton_Click(object sender, RoutedEventArgs e)
