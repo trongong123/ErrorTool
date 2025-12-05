@@ -13,10 +13,10 @@
                 <TextBox Name="IdTextBox" Width="100" Margin="0,5" TextChanged="IdTextBox_TextChanged"/>
                 <TextBlock Name="MessageTextBlock" Width="300" Margin="0,5"/>
                 <Button Content="Select Overview Image" Width="150" Click="SelectOverviewImageButton_Click" Margin="0,5"/>
-                <Canvas Name="OverviewCanvas" Width="595" Height="360" Background="LightGray"
+                <Canvas Name="OverviewCanvas" Width="760" Height="390" Background="LightGray"
                         MouseDown="OverviewCanvas_MouseDown" MouseMove="OverviewCanvas_MouseMove">
                     <Image Name="OverviewImage" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                           Width="595" Height="360"/>
+                           Width="760" Height="390"/>
                 </Canvas>
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="X:"/>
@@ -29,10 +29,10 @@
                     <TextBlock Name="OverviewHeightTextBlock" Width="50"/>
                 </StackPanel>
                 <Button Content="Select Detail Image" Width="150" Click="SelectDetailImageButton_Click" Margin="0,5"/>
-                <Canvas Name="DetailCanvas" Width="295" Height="360" Background="LightGray"
+                <Canvas Name="DetailCanvas" Width="381" Height="390" Background="LightGray"
                         MouseDown="DetailCanvas_MouseDown" MouseMove="DetailCanvas_MouseMove">
                     <Image Name="DetailImage" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                           Width="295" Height="360"/>
+                           Width="381" Height="390"/>
                 </Canvas>
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="X:"/>

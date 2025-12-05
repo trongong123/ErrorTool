@@ -38,7 +38,7 @@ namespace ErrorTool
         {
             if (int.TryParse(IdTextBox.Text, out int id))
             {
-                var message = Enum.GetName(typeof(EWarning), id);
+                var message = Enum.GetName(typeof(EAlarm), id);
                 MessageTextBlock.Text = message ?? "Invalid ID";
             }
         }
